@@ -8,6 +8,13 @@ dotenv.config({
 
 
 connectDB()
+.then(process.env.PORT||8000,()=>{
+    console.log(`App is listening on port ${process.env.PORT || 8000}`);
+})
+.catch((error)=>{
+    console.log("Error connecting to the database !!!",error)
+    process.exit(1); // Exit the process with failure
+})
 
 // 
 /*
