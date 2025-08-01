@@ -1,9 +1,16 @@
+import mongoose from "mongoose";
 
 
 // 1st way to write asyncHandler
+//what is the use of this code
+// The asyncHandler is a utility function that wraps an asynchronous request handler function.
+// It ensures that any errors thrown in the async function are caught and passed to the next middleware 
+// what is the use of this code and why we write it 
+// ans: This code is useful for handling errors in asynchronous Express route handlers. By wrapping the handler in a try-catch block, we can catch any errors that occur during the execution of the handler and pass them to the next middleware for centralized error handling.
+
 const asyncHandler=(requestHandler)=>{
 
-    (req,res,next)=>{
+    return  (req,res,next)=>{
         Promise.resolve(requestHandler(req,res,next)).// Promise.resolve is used to ensure that the requestHandler is executed as a promise
         catch((err)=>next(err))// Pass the error to the next middleware ,use of the next is important to handle the error in the express app
     }
